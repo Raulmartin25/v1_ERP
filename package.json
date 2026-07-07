@@ -1,0 +1,28 @@
+{
+  "name": "erp-restaurant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Restaurant ERP prototype — POS/Orders, Menu & Recipe, Finance & Accounting",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build:packages": "pnpm --filter @erp/shared --filter @erp/db build",
+    "dev": "pnpm build:packages && pnpm --parallel --filter \"./apps/*\" dev",
+    "dev:api": "pnpm build:packages && pnpm --filter @erp/api dev",
+    "dev:web": "pnpm --filter @erp/web dev",
+    "build": "pnpm build:packages && pnpm -r build",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter @erp/db migrate",
+    "db:generate": "pnpm --filter @erp/db generate",
+    "db:seed": "pnpm --filter @erp/db seed",
+    "db:studio": "pnpm --filter @erp/db studio",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "puppeteer-core": "23",
+    "typescript": "^5.7.2"
+  }
+}
